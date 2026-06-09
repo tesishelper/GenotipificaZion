@@ -1,0 +1,50 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'com.genotipificazion'
+version '1.0'
+
+// 1. Estructura de carpetas personalizada
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java']
+        }
+        resources {
+            srcDirs = ['src/main/resources']
+        }
+    }
+}
+
+// 2. Compatibilidad con la PC de Celia (Java 8)
+// Usamos la sintaxis de asignación directa para máxima compatibilidad
+project.sourceCompatibility = JavaVersion.VERSION_1_8
+project.targetCompatibility = JavaVersion.VERSION_1_8
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+
+
+}
+
+repositories {
+    mavenCentral()
+}
+
+application {
+    mainClass = 'ventana.Main'
+}
+
+jar {
+    // Esto permite que el JAR sea ejecutable con doble clic
+    manifest {
+        attributes('Main-Class': 'ventana.Main')
+    }
+    // Esto mete todas las librerías dentro del JAR (Fat JAR)
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
