@@ -1,0 +1,25 @@
+# --- Directorios de compilación ---
+build/
+out/
+bin/
+
+# --- Caché y herramientas de Gradle ---
+.gradle/
+local.properties
+
+# --- Configuración de IntelliJ IDEA ---
+.idea/
+*.iml
+
+# --- Configuración de Eclipse (por si acaso) ---
+.classpath
+.project
+.settings/
+
+# --- Archivos temporales de oficina (Locks de CSV) ---
+.~lock.*.csv#
+*.tmp
+
+# --- Archivos del sistema operativo ---
+.DS_Store
+Thumbs.db
