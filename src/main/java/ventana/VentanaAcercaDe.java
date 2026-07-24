@@ -44,7 +44,7 @@ public class VentanaAcercaDe extends JDialog {
         panelContenido.setBorder(new EmptyBorder(20, 20, 20, 20));
 
         // Título e info (usando HTML)
-        JLabel titulo = new JLabel("<html><h2 style='color:#2E86C1;'>GenotipificaZión v= 1.0</h2></html>");
+        JLabel titulo = new JLabel("<html><h2 style='color:#2E86C1;'>GenotipificaZión v= 1.1</h2></html>");
         titulo.setAlignmentX(Component.LEFT_ALIGNMENT);
         
         JLabel info = new JLabel("<html><p>Desarrollado por:</p>" +

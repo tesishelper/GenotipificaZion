@@ -115,7 +115,7 @@ public class Ventana extends JFrame {
     JComboBox<String> comboSonda4 = new JComboBox<>(opcionesSondas);
     private JComboBox<String> comboModoMarcadores;
 
-    private String version = "v= 1.0";
+    private String version = "v= 1.1";
 
 // Aplicar el estilo para que combine con tu interfaz
 
@@ -124,7 +124,7 @@ public class Ventana extends JFrame {
     	
     	
     	
-        super("GenotipificaZión v= 1.0");
+        super("GenotipificaZión v= 1.1");
         
         m = new Metodos();
         
@@ -178,7 +178,7 @@ public class Ventana extends JFrame {
         
         //Crear items al menu Configurar
          JMenuItem itemRestaurar = new JMenuItem("Restaurar Configuración");
-        JMenuItem itemGuardarConf = new JMenuItem("Cuardar Configuración");
+        JMenuItem itemGuardarConf = new JMenuItem("Guardar Configuración");
         
         //Agregar items al menu Configurar
         
@@ -328,7 +328,7 @@ public class Ventana extends JFrame {
         gbc.weightx = 0; // Columna 1: Tamaño fijo para el combo
         comboSonda1.setPreferredSize(new Dimension(120, 30)); // Un poco más estrecho
         comboSonda1.setFont(new Font("Arial", Font.PLAIN, 14));
-        comboSonda1.setSelectedIndex(0);
+        comboSonda1.setSelectedIndex(0);//Fam
         panelCarga.add(comboSonda1, gbc);
 
         gbc.gridx = 3;
@@ -385,7 +385,7 @@ public class Ventana extends JFrame {
         gbc.weightx = 0; // Cambiado a 0 para que no se estire
         comboSonda2.setPreferredSize(new Dimension(120, 30));
         comboSonda2.setFont(new Font("Arial", Font.PLAIN, 14));
-        comboSonda2.setSelectedIndex(1);
+        comboSonda2.setSelectedIndex(5);//TexasRed
         panelCarga.add(comboSonda2, gbc);
 
         gbc.gridx = 3;
@@ -406,7 +406,7 @@ public class Ventana extends JFrame {
         panelCarga.add(btn3, gbc);
 
         gbc.gridx = 1;
-        jtf_alelo3 = new JTextField("Alelo 3"); // Este es el texto inicial (Hint)
+        jtf_alelo3 = new JTextField("Alelo 2"); // Este es el texto inicial (Hint)
         jtf_alelo3.setForeground(Color.GRAY); // Color gris para que parezca un hint
         jtf_alelo3.setPreferredSize(new Dimension(170, 30));
         jtf_alelo3.setFont(new Font("Arial", Font.ITALIC, 14)); // Itálica para el hint
@@ -417,7 +417,7 @@ public class Ventana extends JFrame {
         jtf_alelo3.addFocusListener(new java.awt.event.FocusAdapter() {
             @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
-                if (jtf_alelo3.getText().equals("Alelo 3")) {
+                if (jtf_alelo3.getText().equals("Alelo 2")) {
                     jtf_alelo3.setText("");
                     jtf_alelo3.setForeground(Color.BLACK);
                     jtf_alelo3.setFont(new Font("Arial", Font.BOLD, 16));
@@ -428,7 +428,7 @@ public class Ventana extends JFrame {
                 if (jtf_alelo3.getText().isEmpty()) {
                     jtf_alelo3.setForeground(Color.GRAY);
                     jtf_alelo3.setFont(new Font("Arial", Font.ITALIC, 14));
-                    jtf_alelo3.setText("Alelo 3");
+                    jtf_alelo3.setText("Alelo 2");
                 }
             }
         });
@@ -438,7 +438,7 @@ public class Ventana extends JFrame {
         gbc.weightx = 0; // Cambiado a 0
         comboSonda3.setPreferredSize(new Dimension(120, 30));
         comboSonda3.setFont(new Font("Arial", Font.PLAIN, 14));
-        comboSonda3.setSelectedIndex(5);
+        comboSonda3.setSelectedIndex(1);//Hex
         panelCarga.add(comboSonda3, gbc);
 
         gbc.gridx = 3;
@@ -494,7 +494,7 @@ public class Ventana extends JFrame {
         gbc.weightx = 0; // Cambiado a 0
         comboSonda4.setPreferredSize(new Dimension(120, 30));
         comboSonda4.setFont(new Font("Arial", Font.PLAIN, 14));
-        comboSonda4.setSelectedIndex(7); // Cambiado a 3 para Cy5
+        comboSonda4.setSelectedIndex(7); // Cy5
         panelCarga.add(comboSonda4, gbc);
 
         gbc.gridx = 3;
@@ -1266,7 +1266,7 @@ public class Ventana extends JFrame {
             // --- 3. Alelos (con manejo de formato/hints) ---
             restaurarCampoAlelo(jtf_alelo1, props.getProperty("alelo.1"), "Alelo 1");
            // restaurarCampoAlelo(jtf_alelo2, props.getProperty("alelo.2"), "Alelo 2");
-            restaurarCampoAlelo(jtf_alelo3, props.getProperty("alelo.3"), "Alelo 3");
+            restaurarCampoAlelo(jtf_alelo3, props.getProperty("alelo.3"), "Alelo 2"); //Este en realidad es el alelo 2
             //restaurarCampoAlelo(jtf_alelo4, props.getProperty("alelo.4"), "Alelo 4");
 
             // --- 4. Selectores de Color (Combos) ---
@@ -1344,7 +1344,7 @@ public class Ventana extends JFrame {
         // --- 3. Alelos (Evitar guardar los Hints "Alelo 1", "Alelo 2", etc.) ---
         props.setProperty("alelo.1", jtf_alelo1.getText().equals("Alelo 1") ? "" : jtf_alelo1.getText());
         //props.setProperty("Control (*X)", jtf_alelo2.getText().equals("Alelo 2") ? "" : jtf_alelo2.getText());
-        props.setProperty("alelo.3", jtf_alelo3.getText().equals("Alelo 3") ? "" : jtf_alelo3.getText());
+        props.setProperty("alelo.3", jtf_alelo3.getText().equals("Alelo 2") ? "" : jtf_alelo3.getText());
         //props.setProperty("alelo.4", jtf_alelo4.getText().equals("Alelo 4") ? "" : jtf_alelo4.getText());
 
         // --- 4. Selectores de Color (Combos de las Sondas) ---
@@ -1459,9 +1459,9 @@ public class Ventana extends JFrame {
 
         // 2. Restaurar Alelos (usando el método auxiliar que ya creamos)
         restaurarCampoAlelo(jtf_alelo1, null, "Alelo 1");
-        //restaurarCampoAlelo(jtf_alelo2, null, "Control (*X)");
-        restaurarCampoAlelo(jtf_alelo3, null, "Alelo 3");
-        restaurarCampoAlelo(jtf_alelo4, null, "Alelo 4");
+        restaurarCampoAlelo(jtf_alelo2, null, "Control (*X)");
+        restaurarCampoAlelo(jtf_alelo3, null, "Alelo 2");
+        restaurarCampoAlelo(jtf_alelo4, null, "Control (*X)");
 
         // 3. Restaurar Selectores de Color (Sondas) a sus posiciones originales
         comboSonda1.setSelectedIndex(0); // FAM
