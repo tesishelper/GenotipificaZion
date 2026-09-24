@@ -105,14 +105,16 @@ public class Ventana extends JFrame {
 	private JLabel jln;
 
     // Definir las opciones
-    String[] opcionesSondas = {"FAM","HEX", "VIC", "JOE", "Cy3", "Texas Red", "ROX", "Cy5", "Cy5.5"};
-
+    String[] opcionesSondas1 = {"FAM"};
+    String[] opcionesSondas2 = { "Texas Red"};
+    String[] opcionesSondas3 = {"HEX"};
+    String[] opcionesSondas4 = { "Cy5"};
     // Crear el JComboBox
-    JComboBox<String> comboSonda1 = new JComboBox<>(opcionesSondas);
+    JComboBox<String> comboSonda1 = new JComboBox<>(opcionesSondas1);
 
-    JComboBox<String> comboSonda2 = new JComboBox<>(opcionesSondas);
-    JComboBox<String> comboSonda3 = new JComboBox<>(opcionesSondas);
-    JComboBox<String> comboSonda4 = new JComboBox<>(opcionesSondas);
+    JComboBox<String> comboSonda2 = new JComboBox<>(opcionesSondas2);
+    JComboBox<String> comboSonda3 = new JComboBox<>(opcionesSondas3);
+    JComboBox<String> comboSonda4 = new JComboBox<>(opcionesSondas4);
     private JComboBox<String> comboModoMarcadores;
 
     private String version = "v= 1.1";
@@ -163,22 +165,22 @@ public class Ventana extends JFrame {
         JMenuBar menuBar = new JMenuBar();
 
         // 2. Crear los menús principales
-        JMenu menuArchivo = new JMenu("Archivo");
-        JMenu menuConfigurar = new JMenu("Configurar");
-        JMenu menuAyuda = new JMenu("Ayuda");
+        JMenu menuArchivo = new JMenu("File");
+        JMenu menuConfigurar = new JMenu("Set up");
+        JMenu menuAyuda = new JMenu("Help");
 
         // 3. Crear los items del menú Archivo
 
-        JMenuItem itemCalcular = new JMenuItem("Calcular");
-        JMenuItem itemExportar = new JMenuItem("Exportar Resultado");
-        JMenuItem itemSalir = new JMenuItem("Salir");
+        JMenuItem itemCalcular = new JMenuItem("Calculate");
+        JMenuItem itemExportar = new JMenuItem("Export Result");
+        JMenuItem itemSalir = new JMenuItem("Quit");
         
 
         
         
         //Crear items al menu Configurar
-         JMenuItem itemRestaurar = new JMenuItem("Restaurar Configuración");
-        JMenuItem itemGuardarConf = new JMenuItem("Guardar Configuración");
+         JMenuItem itemRestaurar = new JMenuItem("Restore Settings");
+        JMenuItem itemGuardarConf = new JMenuItem("Save Settings");
         
         //Agregar items al menu Configurar
         
@@ -196,8 +198,8 @@ public class Ventana extends JFrame {
         menuArchivo.add(itemSalir);
 
         // 4. Crear los items del menú Ayuda
-        JMenuItem itemObtenerAyuda = new JMenuItem("Ver ayuda");
-        JMenuItem itemAcercaDe = new JMenuItem("Acerca de este programa");
+        JMenuItem itemObtenerAyuda = new JMenuItem("Get help");
+        JMenuItem itemAcercaDe = new JMenuItem("About this program");
 
         // Agregar items al menú Ayuda
         menuAyuda.add(itemObtenerAyuda);
@@ -233,7 +235,7 @@ public class Ventana extends JFrame {
         gbc.gridy = 0;
         gbc.gridwidth = 4; // CAMBIO: Ahora son 3 columnas
         gbc.weightx = 1.0;
-        JLabel jln0 = new JLabel("Utilizar los botones para cargar los archivos csv");
+        JLabel jln0 = new JLabel("Use the buttons to load the CSV files.");
         jln0.setFont(new Font("Arial", Font.PLAIN, 18));
         panelCarga.add(jln0, gbc);
 
@@ -248,7 +250,7 @@ public class Ventana extends JFrame {
         gbc.weightx = 0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        jtf_nombre = new JTextField("Escriba el nombre aquí..."); // Este es el texto inicial (Hint)
+        jtf_nombre = new JTextField("Enter the name here..."); // Este es el texto inicial (Hint)
         jtf_nombre.setForeground(Color.GRAY); // Color gris para que parezca un hint
         jtf_nombre.setPreferredSize(new Dimension(170, 30));
         jtf_nombre.setFont(new Font("Arial", Font.ITALIC, 14)); // Itálica para el hint
@@ -259,7 +261,7 @@ public class Ventana extends JFrame {
         jtf_nombre.addFocusListener(new java.awt.event.FocusAdapter() {
             @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
-                if (jtf_nombre.getText().equals("Escriba el nombre aquí...")) {
+                if (jtf_nombre.getText().equals("Enter the name here...")) {
                     jtf_nombre.setText("");
                     jtf_nombre.setForeground(Color.BLACK);
                     jtf_nombre.setFont(new Font("Arial", Font.BOLD, 16));
@@ -270,7 +272,7 @@ public class Ventana extends JFrame {
                 if (jtf_nombre.getText().isEmpty()) {
                     jtf_nombre.setForeground(Color.GRAY);
                     jtf_nombre.setFont(new Font("Arial", Font.ITALIC, 14));
-                    jtf_nombre.setText("Escriba el nombre aquí...");
+                    jtf_nombre.setText("Enter the name here...");
                 }
             }
         });
@@ -280,7 +282,7 @@ public class Ventana extends JFrame {
         gbc.gridx = 1;
         gbc.gridwidth = 2; // Ocupa el resto de las columnas
         gbc.weightx = 0;
-        jln = new JLabel("Nombre del proyecto (opcional)");
+        jln = new JLabel("Project name (optional)");
         jln.setFont(new Font("Arial", Font.PLAIN, 14));
         panelCarga.add(jln, gbc);
 
@@ -290,24 +292,25 @@ public class Ventana extends JFrame {
         gbc.gridx = 0;
         gbc.weightx = 0; // Columna 0: Tamaño fijo
         gbc.fill = GridBagConstraints.NONE;
-        btn1 = new JButton("Cargar Sonda 1");
+        btn1 = new JButton("Load FAM");
         btn1.setPreferredSize(new Dimension(170, 30));
         panelCarga.add(btn1, gbc);
 
         gbc.gridx = 1;
 
-        jtf_alelo1 = new JTextField("Alelo 1"); // Este es el texto inicial (Hint)
+        jtf_alelo1 = new JTextField("*0302"); // Este es el texto inicial (Hint)
         jtf_alelo1.setForeground(Color.GRAY); // Color gris para que parezca un hint
         jtf_alelo1.setPreferredSize(new Dimension(170, 30));
         jtf_alelo1.setFont(new Font("Arial", Font.ITALIC, 14)); // Itálica para el hint
         jtf_alelo1.setBorder(BorderFactory.createLineBorder(new Color(70, 130, 180), 2));
         jtf_alelo1.setHorizontalAlignment(SwingConstants.CENTER);
+        jtf_alelo1.setEnabled(false);
 
         // Lógica para que el texto desaparezca al hacer clic
         jtf_alelo1.addFocusListener(new java.awt.event.FocusAdapter() {
             @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
-                if (jtf_alelo1.getText().equals("Alelo 1")) {
+                if (jtf_alelo1.getText().equals("*0302")) {
                     jtf_alelo1.setText("");
                     jtf_alelo1.setForeground(Color.BLACK);
                     jtf_alelo1.setFont(new Font("Arial", Font.BOLD, 16));
@@ -318,7 +321,7 @@ public class Ventana extends JFrame {
                 if (jtf_alelo1.getText().isEmpty()) {
                     jtf_alelo1.setForeground(Color.GRAY);
                     jtf_alelo1.setFont(new Font("Arial", Font.ITALIC, 14));
-                    jtf_alelo1.setText("Alelo 1");
+                    jtf_alelo1.setText("*0302");
                 }
             }
         });
@@ -328,14 +331,14 @@ public class Ventana extends JFrame {
         gbc.weightx = 0; // Columna 1: Tamaño fijo para el combo
         comboSonda1.setPreferredSize(new Dimension(120, 30)); // Un poco más estrecho
         comboSonda1.setFont(new Font("Arial", Font.PLAIN, 14));
-        comboSonda1.setSelectedIndex(0);//Fam
+       // comboSonda1.setSelectedIndex(0);//Fam
         panelCarga.add(comboSonda1, gbc);
 
         gbc.gridx = 3;
         gbc.weightx = 1.0;
         gbc.fill = GridBagConstraints.HORIZONTAL; // Cambiar a NONE para que no se estire
         gbc.anchor = GridBagConstraints.WEST; // Asegura que se pegue a la izquie
-        jln1 = new JLabel("Archivo 1: Ninguno");
+        jln1 = new JLabel("FAM file: None");
         jln1.setFont(new Font("Arial", Font.PLAIN, 14));
         panelCarga.add(jln1, gbc);
 
@@ -344,7 +347,7 @@ public class Ventana extends JFrame {
         gbc.gridx = 0;
         gbc.weightx = 0;
         gbc.fill = GridBagConstraints.NONE;
-        btn2 = new JButton("Cargar Sonda 2");
+        btn2 = new JButton("Load Texas Red");
         btn2.setPreferredSize(new Dimension(170, 30));
         panelCarga.add(btn2, gbc);
 
@@ -385,14 +388,14 @@ public class Ventana extends JFrame {
         gbc.weightx = 0; // Cambiado a 0 para que no se estire
         comboSonda2.setPreferredSize(new Dimension(120, 30));
         comboSonda2.setFont(new Font("Arial", Font.PLAIN, 14));
-        comboSonda2.setSelectedIndex(5);//TexasRed
+       // comboSonda2.setSelectedIndex(5);//TexasRed
         panelCarga.add(comboSonda2, gbc);
 
         gbc.gridx = 3;
         gbc.weightx = 1.0;
         gbc.fill = GridBagConstraints.HORIZONTAL; // Cambiar a NONE para que no se estire
         gbc.anchor = GridBagConstraints.WEST; // Asegura que se pegue a la izquie
-        jln2 = new JLabel("Archivo 2: Ninguno");
+        jln2 = new JLabel("Texas Red file: None");
         jln2.setFont(new Font("Arial", Font.PLAIN, 14));
         panelCarga.add(jln2, gbc);
 
@@ -401,23 +404,24 @@ public class Ventana extends JFrame {
         gbc.gridx = 0;
         gbc.weightx = 0;
         gbc.fill = GridBagConstraints.NONE;
-        btn3 = new JButton("Cargar Sonda 3");
+        btn3 = new JButton("Load HEX");
         btn3.setPreferredSize(new Dimension(170, 30));
         panelCarga.add(btn3, gbc);
 
         gbc.gridx = 1;
-        jtf_alelo3 = new JTextField("Alelo 2"); // Este es el texto inicial (Hint)
+        jtf_alelo3 = new JTextField("*02"); // Este es el texto inicial (Hint)
         jtf_alelo3.setForeground(Color.GRAY); // Color gris para que parezca un hint
         jtf_alelo3.setPreferredSize(new Dimension(170, 30));
         jtf_alelo3.setFont(new Font("Arial", Font.ITALIC, 14)); // Itálica para el hint
         jtf_alelo3.setBorder(BorderFactory.createLineBorder(new Color(70, 130, 180), 2));
         jtf_alelo3.setHorizontalAlignment(SwingConstants.CENTER);
+        jtf_alelo3.setEnabled(false);
 
         // Lógica para que el texto desaparezca al hacer clic
         jtf_alelo3.addFocusListener(new java.awt.event.FocusAdapter() {
             @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
-                if (jtf_alelo3.getText().equals("Alelo 2")) {
+                if (jtf_alelo3.getText().equals("*02")) {
                     jtf_alelo3.setText("");
                     jtf_alelo3.setForeground(Color.BLACK);
                     jtf_alelo3.setFont(new Font("Arial", Font.BOLD, 16));
@@ -428,7 +432,7 @@ public class Ventana extends JFrame {
                 if (jtf_alelo3.getText().isEmpty()) {
                     jtf_alelo3.setForeground(Color.GRAY);
                     jtf_alelo3.setFont(new Font("Arial", Font.ITALIC, 14));
-                    jtf_alelo3.setText("Alelo 2");
+                    jtf_alelo3.setText("*02");
                 }
             }
         });
@@ -438,14 +442,14 @@ public class Ventana extends JFrame {
         gbc.weightx = 0; // Cambiado a 0
         comboSonda3.setPreferredSize(new Dimension(120, 30));
         comboSonda3.setFont(new Font("Arial", Font.PLAIN, 14));
-        comboSonda3.setSelectedIndex(1);//Hex
+        //comboSonda3.setSelectedIndex(1);//Hex
         panelCarga.add(comboSonda3, gbc);
 
         gbc.gridx = 3;
         gbc.weightx = 1.0;
         gbc.fill = GridBagConstraints.HORIZONTAL; // Cambiar a NONE para que no se estire
         gbc.anchor = GridBagConstraints.WEST; // Asegura que se pegue a la izquie
-        jln3 = new JLabel("Archivo 3: Ninguno");
+        jln3 = new JLabel("HEX file: None");
         jln3.setFont(new Font("Arial", Font.PLAIN, 14));
         panelCarga.add(jln3, gbc);
 
@@ -454,7 +458,7 @@ public class Ventana extends JFrame {
         gbc.gridx = 0;
         gbc.weightx = 0;
         gbc.fill = GridBagConstraints.NONE;
-        btn4 = new JButton("Cargar Sonda 4");
+        btn4 = new JButton("Load Cy5");
         btn4.setPreferredSize(new Dimension(170, 30));
         panelCarga.add(btn4, gbc);
 
@@ -494,14 +498,14 @@ public class Ventana extends JFrame {
         gbc.weightx = 0; // Cambiado a 0
         comboSonda4.setPreferredSize(new Dimension(120, 30));
         comboSonda4.setFont(new Font("Arial", Font.PLAIN, 14));
-        comboSonda4.setSelectedIndex(7); // Cy5
+        //comboSonda4.setSelectedIndex(7); // Cy5
         panelCarga.add(comboSonda4, gbc);
 
         gbc.gridx = 3;
         gbc.weightx = 1.0;
         gbc.fill = GridBagConstraints.HORIZONTAL; // Cambiar a NONE para que no se estire
         gbc.anchor = GridBagConstraints.WEST; // Asegura que se pegue a la izquie
-        jln4 = new JLabel("Archivo 4: Ninguno");
+        jln4 = new JLabel("Cy5 file: None");
         jln4.setFont(new Font("Arial", Font.PLAIN, 14));
         panelCarga.add(jln4, gbc);
 
@@ -513,14 +517,14 @@ public class Ventana extends JFrame {
         gbc.gridx = 0;
         gbc.weightx = 0;
         gbc.fill = GridBagConstraints.NONE;
-        bCalcular = new JButton("Calcular");
+        bCalcular = new JButton("CALCULATE");
         bCalcular.setPreferredSize(new Dimension(170, 30));
         panelCarga.add(bCalcular, gbc);
 
         // Botón Borrar Resultados
         gbc.gridx = 1;
         gbc.weightx = 0;
-        bReiniciar = new JButton("Borrar Todo");
+        bReiniciar = new JButton("Clear All");
         bReiniciar.setPreferredSize(new Dimension(170, 30)); // Mismo ancho que los demás
         panelCarga.add(bReiniciar, gbc);
 
@@ -528,7 +532,7 @@ public class Ventana extends JFrame {
         gbc.gridx = 2;
         gbc.weightx = 0; // No queremos que el botón se estire hasta el final
         gbc.anchor = GridBagConstraints.WEST; // Pegado a la izquierda de su columna
-        bExportarResultados = new JButton("Exportar Resultados");
+        bExportarResultados = new JButton("Export Results");
         bExportarResultados.setPreferredSize(new Dimension(170, 30));
         panelCarga.add(bExportarResultados, gbc);
 
@@ -539,11 +543,12 @@ public class Ventana extends JFrame {
         gbc.fill = GridBagConstraints.NONE; // Cambiar a NONE para que no se estire
         gbc.anchor = GridBagConstraints.WEST; // Asegura que se pegue a la izquie
 
-        String[] modos = {" Dos Sondas", " Cuatro Sondas"};
+        String[] modos = {" Two Probes", " Four Probes"};
         comboModoMarcadores = new JComboBox<>(modos);
         comboModoMarcadores.setSelectedIndex(1);
         comboModoMarcadores.setPreferredSize(new Dimension(160, 30));
         comboModoMarcadores.setFont(new Font("Arial", Font.BOLD, 13));
+        comboModoMarcadores.setEnabled(false);
 
         panelCarga.add(comboModoMarcadores, gbc);
 
@@ -551,7 +556,7 @@ public class Ventana extends JFrame {
             actualizarEstadoFilasSondas();
         });
 
-        tabbedPane.addTab("Carga de datos", panelCarga);
+        tabbedPane.addTab("Load data", panelCarga);
 
 
 
@@ -570,7 +575,7 @@ public class Ventana extends JFrame {
         //PANEL PARA SETTINGS GENERALES
 
         JPanel panelSettingGeneral = new JPanel(new GridBagLayout());
-        	TitledBorder titledBorder = BorderFactory.createTitledBorder(" Configuración General ");
+        	TitledBorder titledBorder = BorderFactory.createTitledBorder(" General Configuration ");
         				titledBorder.setTitleFont(new Font("Arial", Font.BOLD, 16));
 
         panelSettingGeneral.setBorder(titledBorder);
@@ -590,7 +595,7 @@ public class Ventana extends JFrame {
         permitirSoloNumerosEnteros(jtf_primerCiclo, 2);
 
         gbc.gridx = 1;
-        JLabel jl2 = new JLabel("Primeros ciclos de la reacción");
+        JLabel jl2 = new JLabel("Initial cycles of the reaction");
         jl2.setFont(new Font("Arial", Font.PLAIN, 16));
         panelSettingGeneral.add(jl2, gbc);
 
@@ -619,7 +624,7 @@ public class Ventana extends JFrame {
         panelSettingGeneral.add(jtf_promedioSuperior, gbc);
 
         gbc.gridx = 1;
-        JLabel jl4 = new JLabel("Ultimos ciclos de la reacción");
+        JLabel jl4 = new JLabel("Final cycles of the reaction");
         jl4.setFont(new Font("Arial", Font.PLAIN, 16));
         panelSettingGeneral.add(jl4, gbc);
 
@@ -638,7 +643,7 @@ public class Ventana extends JFrame {
         panelSettingGeneral.add(jtf_umbral, gbc);
 
         gbc.gridx = 1;
-        JLabel jl5 = new JLabel("Umbral pocillos vacíos");
+        JLabel jl5 = new JLabel("Empty well threshold");
         jl5.setFont(new Font("Arial", Font.PLAIN, 16));
         panelSettingGeneral.add(jl5, gbc);
 
@@ -666,7 +671,7 @@ public class Ventana extends JFrame {
         //PANEL PARA POBLACION FAM/TEXASRED
 
         JPanel panelPoblacionFamTexasRed = new JPanel(new GridBagLayout());
-    	TitledBorder titledBorder2 = BorderFactory.createTitledBorder(" Población Sonda 1/Sonda 2 ");
+    	TitledBorder titledBorder2 = BorderFactory.createTitledBorder(" FAM/Texas_Red Population ");
     				titledBorder2.setTitleFont(new Font("Arial", Font.BOLD, 16));
 
     				panelPoblacionFamTexasRed.setBorder(titledBorder2);
@@ -675,7 +680,7 @@ public class Ventana extends JFrame {
     	gbc.gridx = 1;
     	gbc.gridy = 0;
 
-    	 JLabel media = new JLabel("Media");
+    	 JLabel media = new JLabel("Average");
          media.setFont(new Font("Arial", Font.PLAIN, 16));
          panelPoblacionFamTexasRed.add(media, gbc);
 
@@ -768,7 +773,7 @@ public class Ventana extends JFrame {
 
 
         JPanel panelPoblacionHexCy5 = new JPanel(new GridBagLayout());
-    	TitledBorder titledBorder3 = BorderFactory.createTitledBorder(" Población Sonda 3/Sonda 4 ");
+    	TitledBorder titledBorder3 = BorderFactory.createTitledBorder(" HEX/Cy5 Population ");
     				titledBorder3.setTitleFont(new Font("Arial", Font.BOLD, 16));
 
     				panelPoblacionHexCy5.setBorder(titledBorder3);
@@ -777,7 +782,7 @@ public class Ventana extends JFrame {
     	gbc.gridx = 1;
     	gbc.gridy = 0;
 
-    	 JLabel media2 = new JLabel("Media");
+    	 JLabel media2 = new JLabel("Average");
          media2.setFont(new Font("Arial", Font.PLAIN, 16));
          panelPoblacionHexCy5.add(media2, gbc);
 
@@ -879,7 +884,7 @@ public class Ventana extends JFrame {
         gbc.gridx = 0;
         gbc.gridy = 4;
         gbc.weightx = 0;
-        bGuardarConfiguracion = new JButton("Guardar Configuración");
+        bGuardarConfiguracion = new JButton("Save Settings");
         bGuardarConfiguracion.setPreferredSize(new Dimension(170, 30));
         //panelSettings.add(bGuardarConfiguracion, gbc);
 
@@ -887,13 +892,13 @@ public class Ventana extends JFrame {
         gbc.gridx = 2;
         gbc.gridy = 4;
         gbc.weightx = 0;
-        bRestaurar = new JButton("Restaurar Configuración");
+        bRestaurar = new JButton("Restore Settings");
         bRestaurar.setPreferredSize(new Dimension(170, 30));
        // panelSettings.add(bRestaurar, gbc);
 
 
 
-        tabbedPane.addTab("Configuración", panelSettings);
+        tabbedPane.addTab("Set up", panelSettings);
         // Añadir las pestañas al panel superior
         JPanel panelSuperior = new JPanel(new BorderLayout());
         panelSuperior.add(tabbedPane, BorderLayout.CENTER);
@@ -902,7 +907,7 @@ public class Ventana extends JFrame {
 
         // ====================== PANEL INFERIOR (Resultado) ======================
         JPanel panelInferior = new JPanel(new BorderLayout());
-        TitledBorder borde = BorderFactory.createTitledBorder(" Resultado ");
+        TitledBorder borde = BorderFactory.createTitledBorder(" Results ");
         borde.setTitleFont(new Font("Arial", Font.BOLD, 16));
         panelInferior.setBorder(borde);
 
@@ -930,16 +935,16 @@ public class Ventana extends JFrame {
          scroll3 = new JScrollPane(tabla3);
 
 // 3. Añadimos cada ScrollPane al TabbedPane con su título correspondiente
-        tabsResultados.addTab("Resultado Sonda 1/Sonda 2", scroll1);
-        tabsResultados.addTab("Resultado Sonda 3/Sonda 4", scroll2);
-        tabsResultados.addTab("Resultado GENOTIPOS", scroll3); // Título para la tercera pestaña
+        tabsResultados.addTab("Results FAM/Texas_Red", scroll1);
+        tabsResultados.addTab("Results HEX/Cy5", scroll2);
+        tabsResultados.addTab("Genotyping results", scroll3); // Título para la tercera pestaña
 
 // 4. Añadimos el TabbedPane al panelInferior
         panelInferior.add(tabsResultados, BorderLayout.CENTER);
 
         // ====================== NUEVO: BOTÓN DE BORRADO ABAJO ======================
         JPanel panelBotonAbajo = new JPanel(new FlowLayout(FlowLayout.RIGHT)); // Alineado a la derecha
-        bBorrarTablas = new JButton("Borrar Resultados");
+        bBorrarTablas = new JButton("Clear Results");
         bBorrarTablas.setPreferredSize(new Dimension(220, 30));
         bBorrarTablas.setFont(new Font("Arial", Font.BOLD, 13));
         bBorrarTablas.setForeground(new Color(150, 0, 0)); // Color de texto rojizo para indicar acción de borrar
@@ -994,16 +999,16 @@ public class Ventana extends JFrame {
             archivoS4 = null;
 
             // 2. Restauramos el texto de los JLabels
-            jln1.setText("Archivo 1: Ninguno");
-            jln2.setText("Archivo 2: Ninguno");
-            jln3.setText("Archivo 3: Ninguno");
-            jln4.setText("Archivo 4: Ninguno");
+            jln1.setText("FAM file: None");
+            jln2.setText("Texas Red file: None");
+            jln3.setText("HEX file: None");
+            jln4.setText("Cy5 file: None");
 
             // 3. Opcional: Limpiar también el nombre del proyecto
             jtf_nombre.setText("");
 
             // 4. Mostrar mensaje de confirmación al usuario
-            JOptionPane.showMessageDialog(this, "Se han limpiado todas las cargas de archivos.");
+            JOptionPane.showMessageDialog(this, "All file uploads have been cleared.");
         });
         
         bGuardarConfiguracion.addActionListener(e -> {guardarConfiguracion();});
@@ -1043,8 +1048,8 @@ public class Ventana extends JFrame {
     public void restaurar() {
 		int respuesta = JOptionPane.showConfirmDialog(
 		        null,                                     // Componente padre (null para centrado)
-		        "¿Estás seguro de que deseas cargar los valores originales?", // Mensaje
-		        "Confirmar carga",                        // Título de la ventana
+		        "Are you sure you want to load the original values?", // Mensaje
+		        "Confirm upload",                        // Título de la ventana
 		        JOptionPane.YES_NO_OPTION                 // Tipo de botones
 		    );
 
@@ -1057,7 +1062,7 @@ public class Ventana extends JFrame {
 		        
 		    } else {
 		        // Opcional: acción si el usuario selecciona "No" o cierra la ventana
-		        System.out.println("Carga cancelada por el usuario.");
+		        System.out.println("Upload cancelled by the user.");
 		    }
 		  
     	
@@ -1071,7 +1076,7 @@ public class Ventana extends JFrame {
 
             if(archivoS1 != null && archivoS2 != null ) {
 
-                System.out.println(" calculando dos marcadores");
+                System.out.println(" calculating two markers");
 
                 m.calcularDosMarcadores(this,FamHeaders, FamList, TexasRedList,jta_Resultado);
 
@@ -1080,7 +1085,7 @@ public class Ventana extends JFrame {
             else {
 
                 JOptionPane.showMessageDialog(this,
-                        "Por favor cargue todos los archivos con extensión .csv",
+                        "Please load all files with the .CVS extension.",
                         "Error",
                         JOptionPane.ERROR_MESSAGE);
 
@@ -1090,7 +1095,7 @@ public class Ventana extends JFrame {
     	
     	else if (comboModoMarcadores.getSelectedIndex() == 1) {
 
-            System.out.println(" calculando cuatro marcadores");
+            System.out.println(" calculating four markers");
 
             if(archivoS1 != null && archivoS2 != null && archivoS3 != null && archivoS4 != null ) {
 
@@ -1102,7 +1107,7 @@ public class Ventana extends JFrame {
     	    else {
     		
     		 JOptionPane.showMessageDialog(this,
- 	                "Por favor cargue todos los archivos con extensión .csv",
+ 	                "Please load all files with the .CVS extension.",
  	                "Error",
  	                JOptionPane.ERROR_MESSAGE);
  	            
@@ -1133,7 +1138,7 @@ public class Ventana extends JFrame {
     public void cargarArchivo(File archivo, String string, int pos) {
 
 
-    	archivo = m.cargarArchivo("Seleccionar archivo "+ string,string, archivo, this);
+    	archivo = m.cargarArchivo("Select file "+ string,string, archivo, this);
     	 if (archivo != null) {
     		 //System.out.println("Ejecutando cargar archivo fam2");
          	String nombre = archivo.getName();
@@ -1145,22 +1150,22 @@ public class Ventana extends JFrame {
              switch (pos) {
                  case 1:
                      archivoS1 = archivo;
-                     jln1.setText("Archivo 1: " + nombreAcortado);
+                     jln1.setText("FAM file: " + nombreAcortado);
                      m.leerCSV(FamHeaders, FamList, archivo,this);
                      break;
                  case 2:
                      archivoS2 = archivo;
-                     jln2.setText("Archivo 2: " + nombreAcortado);
+                     jln2.setText("Texas Red file: " + nombreAcortado);
                      m.leerCSV(TexasRedHeaders, TexasRedList, archivo,this);
                      break;
                  case 3:
                      archivoS3 = archivo;
-                     jln3.setText("Archivo 3: " + nombreAcortado);
+                     jln3.setText("HEX file: " + nombreAcortado);
                      m.leerCSV(HexHeaders, HexList, archivo,this);
                      break;
                  case 4:
                      archivoS4 = archivo;
-                     jln4.setText("Archivo 4: " + nombreAcortado);
+                     jln4.setText("Cy5 file: " + nombreAcortado);
                      m.leerCSV(Cy5Headers, Cy5List, archivo,this);
                      break;
              }
@@ -1264,9 +1269,9 @@ public class Ventana extends JFrame {
             jtf_SD_PP_HEX.setText(props.getProperty("sdPPHEX", ""));
 
             // --- 3. Alelos (con manejo de formato/hints) ---
-            restaurarCampoAlelo(jtf_alelo1, props.getProperty("alelo.1"), "Alelo 1");
+            restaurarCampoAlelo(jtf_alelo1, props.getProperty("alelo.1"), "*0302");
            // restaurarCampoAlelo(jtf_alelo2, props.getProperty("alelo.2"), "Alelo 2");
-            restaurarCampoAlelo(jtf_alelo3, props.getProperty("alelo.3"), "Alelo 2"); //Este en realidad es el alelo 2
+            restaurarCampoAlelo(jtf_alelo3, props.getProperty("alelo.3"), "*02"); //Este en realidad es el alelo 2
             //restaurarCampoAlelo(jtf_alelo4, props.getProperty("alelo.4"), "Alelo 4");
 
             // --- 4. Selectores de Color (Combos) ---
@@ -1282,12 +1287,12 @@ public class Ventana extends JFrame {
             // Sincronizar la interfaz (habilitar/deshabilitar filas y pestañas)
             actualizarEstadoFilasSondas();
 
-            System.out.println("Configuración cargada exitosamente.");
+            System.out.println("Configuration loaded successfully.");
         } catch (IOException e) {
 
 
             JOptionPane.showMessageDialog(this,
-                    "No se encontró archivo de configuración, se usarán valores por defecto.",
+                    "No configuration file was found; default values will be used.",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
 
@@ -1342,9 +1347,9 @@ public class Ventana extends JFrame {
         props.setProperty("sdPPHEX", jtf_SD_PP_HEX.getText());
 
         // --- 3. Alelos (Evitar guardar los Hints "Alelo 1", "Alelo 2", etc.) ---
-        props.setProperty("alelo.1", jtf_alelo1.getText().equals("Alelo 1") ? "" : jtf_alelo1.getText());
+        props.setProperty("alelo.1", jtf_alelo1.getText().equals("*0302") ? "" : jtf_alelo1.getText());
         //props.setProperty("Control (*X)", jtf_alelo2.getText().equals("Alelo 2") ? "" : jtf_alelo2.getText());
-        props.setProperty("alelo.3", jtf_alelo3.getText().equals("Alelo 2") ? "" : jtf_alelo3.getText());
+        props.setProperty("alelo.3", jtf_alelo3.getText().equals("*02") ? "" : jtf_alelo3.getText());
         //props.setProperty("alelo.4", jtf_alelo4.getText().equals("Alelo 4") ? "" : jtf_alelo4.getText());
 
         // --- 4. Selectores de Color (Combos de las Sondas) ---
@@ -1359,19 +1364,19 @@ public class Ventana extends JFrame {
 
         // Escribimos al archivo
         try (FileOutputStream out = new FileOutputStream("configuracion.properties")) {
-            props.store(out, "Configuracion de la aplicacion");
+            props.store(out, "Application settings");
 
 
             JOptionPane.showMessageDialog(this,
-                    "Configuración guardada exitosamente.",
-                    "Éxito",
+                    "Configuration saved successfully.",
+                    "Success",
                     JOptionPane.INFORMATION_MESSAGE);
 
             //System.out.println("Configuración guardada exitosamente.");
         } catch (IOException e) {
 
             JOptionPane.showMessageDialog(this,
-                    "Error al guardar la configuracion!!!",
+                    "Error saving the configuration!!!",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
@@ -1389,8 +1394,8 @@ public class Ventana extends JFrame {
 
         // Habilitar/Deshabilitar controles
         btn3.setEnabled(modoCuatro);
-        jtf_alelo3.setEnabled(modoCuatro);
-        comboSonda3.setEnabled(modoCuatro);
+       // jtf_alelo3.setEnabled(modoCuatro);
+       // comboSonda3.setEnabled(modoCuatro);
         jln3.setEnabled(modoCuatro);
         btn4.setEnabled(modoCuatro);
         //jtf_alelo4.setEnabled(modoCuatro);
@@ -1458,16 +1463,16 @@ public class Ventana extends JFrame {
         jtf_nombre.setFont(new Font("Arial", Font.ITALIC, 14));
 
         // 2. Restaurar Alelos (usando el método auxiliar que ya creamos)
-        restaurarCampoAlelo(jtf_alelo1, null, "Alelo 1");
+        restaurarCampoAlelo(jtf_alelo1, null, "*0302");
         restaurarCampoAlelo(jtf_alelo2, null, "Control (*X)");
-        restaurarCampoAlelo(jtf_alelo3, null, "Alelo 2");
+        restaurarCampoAlelo(jtf_alelo3, null, "*02");
         restaurarCampoAlelo(jtf_alelo4, null, "Control (*X)");
 
         // 3. Restaurar Selectores de Color (Sondas) a sus posiciones originales
-        comboSonda1.setSelectedIndex(0); // FAM
-        comboSonda2.setSelectedIndex(5); // Texas Red
-        comboSonda3.setSelectedIndex(1); // HEX
-        comboSonda4.setSelectedIndex(7); // Cy5
+       // comboSonda1.setSelectedIndex(0); // FAM
+       // comboSonda2.setSelectedIndex(5); // Texas Red
+       // comboSonda3.setSelectedIndex(1); // HEX
+       // comboSonda4.setSelectedIndex(7); // Cy5
 
         // 4. Restaurar Modo de Marcadores (Por defecto Cuatro Marcadores)
         if (comboModoMarcadores != null) {
