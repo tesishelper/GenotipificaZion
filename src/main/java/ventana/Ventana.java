@@ -124,7 +124,7 @@ public class Ventana extends JFrame {
     	
     	
     	
-        super("GenotipificaZión v= 1.1");
+        super("GenotipificaZion_DQB1 v= 1.0");
         
         m = new Metodos();
         
