@@ -117,7 +117,7 @@ public class Ventana extends JFrame {
     JComboBox<String> comboSonda4 = new JComboBox<>(opcionesSondas4);
     private JComboBox<String> comboModoMarcadores;
 
-    private String version = "v= 1.1";
+    private String version = "v= 1.0";
 
 // Aplicar el estilo para que combine con tu interfaz
 
@@ -680,7 +680,7 @@ public class Ventana extends JFrame {
     	gbc.gridx = 1;
     	gbc.gridy = 0;
 
-    	 JLabel media = new JLabel("Average");
+    	 JLabel media = new JLabel("Mean");
          media.setFont(new Font("Arial", Font.PLAIN, 16));
          panelPoblacionFamTexasRed.add(media, gbc);
 
@@ -782,7 +782,7 @@ public class Ventana extends JFrame {
     	gbc.gridx = 1;
     	gbc.gridy = 0;
 
-    	 JLabel media2 = new JLabel("Average");
+    	 JLabel media2 = new JLabel("Mean");
          media2.setFont(new Font("Arial", Font.PLAIN, 16));
          panelPoblacionHexCy5.add(media2, gbc);
 

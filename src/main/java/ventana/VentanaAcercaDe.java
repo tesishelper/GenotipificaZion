@@ -33,7 +33,7 @@ import java.awt.datatransfer.StringSelection;
 public class VentanaAcercaDe extends JDialog {
 
     public VentanaAcercaDe(Frame parent) {
-        super(parent, "Acerca de", true);
+        super(parent, "About", true);
         setSize(400, 400); // Aumenté un poco el tamaño para que quepa todo
         setLocationRelativeTo(parent);
         setLayout(new BorderLayout());
@@ -44,12 +44,12 @@ public class VentanaAcercaDe extends JDialog {
         panelContenido.setBorder(new EmptyBorder(20, 20, 20, 20));
 
         // Título e info (usando HTML)
-        JLabel titulo = new JLabel("<html><h2 style='color:#2E86C1;'>GenotipificaZión v= 1.1</h2></html>");
+        JLabel titulo = new JLabel("<html><h2 style='color:#2E86C1;'>GenotipificaZionDQB1 v= 1.0</h2></html>");
         titulo.setAlignmentX(Component.LEFT_ALIGNMENT);
         
-        JLabel info = new JLabel("<html><p>Desarrollado por:</p>" +
-                "<ul><li>Dr. Maximiliano Juri Ayub (Modelo Matemático)</li>" +
-                "<li>Dr. Adolfo R. Zurita (programador)</li></ul>" +
+        JLabel info = new JLabel("<html><p>Developed by:</p>" +
+                "<ul><li>Dr. Maximiliano Juri Ayub (Mathematical Model)</li>" +
+                "<li>Dr. Adolfo R. Zurita (Programmer)</li></ul>" +
                 "<p>Software de código abierto.</p>" +
                 "<p>Licencia: <a href='https://www.gnu.org/licenses/gpl-3.0.html'>GPL-3.0</a> 2026</p></html>");
         info.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -60,7 +60,7 @@ public class VentanaAcercaDe extends JDialog {
         panelContenido.add(Box.createRigidArea(new Dimension(0, 20)));
 
         // --- SECCIÓN DE CONTACTO ALINEADA ---
-        JLabel lblTituloContacto = new JLabel("Contacto:");
+        JLabel lblTituloContacto = new JLabel("Contact:");
         lblTituloContacto.setAlignmentX(Component.LEFT_ALIGNMENT);
         panelContenido.add(lblTituloContacto);
         panelContenido.add(Box.createRigidArea(new Dimension(0, 5)));
@@ -88,12 +88,12 @@ public class VentanaAcercaDe extends JDialog {
         txtEmail.setBackground(new Color(238, 238, 238)); // O el color de fondo de tu ventana
         txtEmail.setColumns(15);
 
-        JButton btnCopiar = new JButton("Copiar");
+        JButton btnCopiar = new JButton("Copy");
         btnCopiar.setMargin(new Insets(0, 5, 0, 5));
         btnCopiar.addActionListener(e -> {
             StringSelection selection = new StringSelection(email);
             Toolkit.getDefaultToolkit().getSystemClipboard().setContents(selection, null);
-            JOptionPane.showMessageDialog(this, "Correo de " + nombre.replace(":", "") + " copiado.");
+            JOptionPane.showMessageDialog(this, "Email address of " + nombre.replace(":", "") + " copied.");
         });
 
         panel.add(lblNombre);

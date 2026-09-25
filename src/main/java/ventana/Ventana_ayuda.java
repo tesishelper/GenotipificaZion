@@ -49,22 +49,22 @@ public class Ventana_ayuda extends JFrame {
         JTabbedPane pestañas = new JTabbedPane();
 
         // 1. Pestaña de Instrucciones
-        pestañas.addTab("Instrucciones", crearPanelInstrucciones());
+        pestañas.addTab("Instructions", crearPanelInstrucciones());
         
         // 2. Pestaña de Modelo Matematico
-        pestañas.addTab("Modelo Matemático", crearPanelModeloMatematico());
+        pestañas.addTab("Mathematical Model", crearPanelModeloMatematico());
 
         // 2. Pestaña de imagen ayuda.jpg
-        pestañas.addTab("Guía Visual 1", crearPanelImagen("ayuda1.jpg"));
+        pestañas.addTab("Visual Guide 1", crearPanelImagen("ayuda1_eng.jpg"));
 
         // 3. Pestaña de imagen ayuda 2
-        pestañas.addTab("Guía Visual 2", crearPanelImagen("ayuda2.jpg"));
+        pestañas.addTab("Visual Guide 2", crearPanelImagen("ayuda2_eng.jpg"));
 
         // 4. Pestaña de imagen ayuda 3
-        pestañas.addTab("Dos Sondas", crearPanelImagen("ayuda3.jpg"));
+        pestañas.addTab("Two Probes", crearPanelImagen("ayuda3.jpg"));
 
         // 4. Pestaña de imagen ayuda 4
-        pestañas.addTab("Cuatro Sondas", crearPanelImagen("ayuda4.jpg"));
+        pestañas.addTab("Four Probes", crearPanelImagen("ayuda4_eng.jpg"));
 
         // Agregamos el JTabbedPane a la ventana
         this.add(pestañas);
@@ -81,7 +81,7 @@ public class Ventana_ayuda extends JFrame {
         Font fuenteTexto = new Font("Arial", Font.PLAIN, 15);
 
         // Título principal
-        JLabel titulo = new JLabel("Cómo usar el programa");
+        JLabel titulo = new JLabel("How to use the program");
         titulo.setFont(fuenteTitulo);
         titulo.setAlignmentX(Component.LEFT_ALIGNMENT);
         panel.add(titulo);
@@ -90,19 +90,18 @@ public class Ventana_ayuda extends JFrame {
 
         // Textos con formato HTML para resaltar elementos clave
         String[] instrucciones = {
-            "<html><b>1. Ingreso de datos:</b><br>" +
-            "Ingrese los datos en la tabla principal con los botones correspondientes.<br>" +
-            "&nbsp;&nbsp;&nbsp;<font color='#1a5fb4'><i>Nota: El programa carga archivos <b>.csv</b> con etiquetas \"Fam\", \"Texas Red\", \"HEX\" y \"Cy5\".</i></font></html>",
+                "<html><b>1. Data Entry:</b><br>" +
+                        "Enter the data into the main table using the corresponding buttons.<br>" +
+                        "&nbsp;&nbsp;&nbsp;<font color='#1a5fb4'><i>Note: The program loads <b>.csv</b> files with labels \"Fam\", \"Texas Red\", \"HEX\", and \"Cy5\".</i></font></html>",
 
-            "<html><b>2. Procesamiento:</b><br>" +
-            "Presione el botón <font color='green'><b>\"Calcular\"</b></font> o use el menú <i>Archivo > Calcular</i> para procesar los resultados analíticos.</html>",
+                "<html><b>2. Processing:</b><br>" +
+                        "Click the <font color='green'><b>\"Calculate\"</b></font> button or use the menu <i>File > Calculate</i> to process the analytical results.</html>",
 
-            "<html><b>3. Exportación:</b><br>" +
-            "Exporte sus resultados a formato CSV usando el menú <font color='#c0392b'><i>\"Archivo > Exportar\"</i></font> o el botón dedicado en la barra de herramientas.</html>",
+                "<html><b>3. Export:</b><br>" +
+                        "Export your results to CSV format using the menu <font color='#c0392b'><i>\"File > Export\"</i></font> or the dedicated button in the toolbar.</html>",
 
-            "<html><b>4. Configuración:</b><br>" +
-            "Puede personalizar los umbrales y preferencias de cálculo en la pestaña <font color='#1a5fb4'><b>\"Ajustes\"</b></font>.</html>"
-        };
+                "<html><b>4. Settings:</b><br>" +
+                        "You can customize the calculation thresholds and preferences in the <font color='#1a5fb4'><b>\"Settings\"</b></font> tab.</html>"        };
 
         for (String texto : instrucciones) {
             JLabel etiqueta = new JLabel(texto);
@@ -137,44 +136,44 @@ public class Ventana_ayuda extends JFrame {
         
         //panel.add(Box.createRigidArea(new Dimension(0, 20)));
 
-        JLabel titulo = new JLabel("Metodología de Procesamiento de Datos");
+        JLabel titulo = new JLabel("Data Processing Methodology");
         titulo.setFont(fuenteTitulo);
         panel.add(titulo);
         panel.add(Box.createRigidArea(new Dimension(0, 25)));
 
         String[] secciones = {
-            "<html><b>1. Cálculo de fluorescencia neta (<i>EndRFU</i>)</b><br>" +
-            "Para cada fluoróforo (FAM, HEX, Texas Red y Cy5) y well, empleando las lecturas de fluorescencia crudas " +
-            "(sin restar baseline) se calculan las <i>EndRFU</i> con la siguiente fórmula:<br><br>" +
-            "&nbsp;&nbsp;&nbsp;<font color='#1a5fb4' size='5'><i>EndRFU = F&#772;<sub>últimos 5</sub> - F&#772;<sub>línea base</sub></i></font><br><br>" +
-            "esto es, últimos 5 ciclos y primeros 10 ciclos (baseline).</html>",
+                "<html><b>1. Net fluorescence calculation (<i>EndRFU</i>)</b><br>" +
+                        "For each fluorophore (FAM, HEX, Texas Red, and Cy5) and well, using raw fluorescence readings " +
+                        "(without baseline subtraction), <i>EndRFU</i> are calculated with the following formula:<br><br>" +
+                        "&nbsp;&nbsp;&nbsp;<font color='#1a5fb4' size='5'><i>EndRFU = F&#772;<sub>last 5</sub> - F&#772;<sub>baseline</sub></i></font><br><br>" +
+                        "that is, last 5 cycles and first 10 cycles (baseline).</html>",
 
-            "<html><b>2. Normalización de valores negativos</b><br>" +
-            "Luego se eliminan valores negativos de <i>EndRFU</i>," +
-            "de manera que si el valor es &lt; 1 se fija en 1:<br><br>" +
-            "&nbsp;&nbsp;&nbsp;<font color='#1a5fb4' size='5'><i>Si EndRFU &lt; 1 => EndRFU = 1 </i></font></html>",
+                "<html><b>2. Negative value normalization</b><br>" +
+                        "Negative <i>EndRFU</i> values are then removed," +
+                        "so that if the value is &lt; 1, it is set to 1:<br><br>" +
+                        "&nbsp;&nbsp;&nbsp;<font color='#1a5fb4' size='5'><i>If EndRFU &lt; 1 => EndRFU = 1 </i></font></html>",
 
-            "<html><b>3. Cálculo de la relación alélica (<i>Log<sub>2</sub></i>)</b><br>" +
-            "Se calcula el <i>Log<sub>2</sub></i> del cociente de <i>EndRFU</i> entre sondas que reconocen diferentes alelos " +
-            "con la siguiente fórmula:<br><br>" +
-            "&nbsp;&nbsp;&nbsp;<font color='#1a5fb4' size='5'><i>Relación = log<sub>2</sub> ( EndRFU<sub>Sonda A</sub> / EndRFU<sub>Sonda B</sub> )</i></font></html>",
+                "<html><b>3. Allelic ratio calculation (<i>Log<sub>2</sub></i>)</b><br>" +
+                        "The <i>Log<sub>2</sub></i> of the <i>EndRFU</i> ratio between probes recognizing different alleles " +
+                        "is calculated using the following formula:<br><br>" +
+                        "&nbsp;&nbsp;&nbsp;<font color='#1a5fb4' size='5'><i>Ratio = log<sub>2</sub> ( EndRFU<sub>Probe A</sub> / EndRFU<sub>Probe B</sub> )</i></font></html>",
 
-            "<html><b>4. Filtrado de calidad y amplificación</b><br>" +
-            "Se filtran datos que no haya amplificación o los valores de <i>EndRFU</i> sean demasiado bajos " +
-            "(menores a 150 entre ambas sondas) con la siguiente fórmula:<br><br>" +
-            "&nbsp;&nbsp;&nbsp;<font color='#1a5fb4' size='5'><i>Resultado = EndRFU<sub>A</sub> + EndRFU<sub>B</sub> &lt; 150; Resultado = \"ND\" </i></font></html>",
+                "<html><b>4. Quality and amplification filtering</b><br>" +
+                        "Data with no amplification or with <i>EndRFU</i> values that are too low " +
+                        "(less than 150 between both probes) are filtered out using the following formula:<br><br>" +
+                        "&nbsp;&nbsp;&nbsp;<font color='#1a5fb4' size='5'><i>Result = EndRFU<sub>A</sub> + EndRFU<sub>B</sub> &lt; 150; Result = \"ND\" </i></font></html>",
 
-            "<html><b>5. Cálculo de Verosimilitud (Likelihood)</b><br>" +
-            "Para cada valor obtenido antes se calcula la verosimilitud de los tres posibles genotipos " +
-            "(ambos homocigotas y heterocigota) con la siguiente fórmula:<br><br>" +
-            "&nbsp;&nbsp;&nbsp;<font color='#1a5fb4' size='6'><i>L(x | &#956;, &#963;) = [ 1 / (&#963;&radic;2&#960;) ] &sdot; e<sup>-&frac12; [ (x - &#956;) / &#963; ]&sup2;</sup></i></font><br><br>" +
-            "Esta emplea los valores de Media (&#956;) y SD (&#963;) obtenidos en muestras de referencia.<br>" +
-            "<b><i>x</i>:</b> Es el valor de la relación logarítmica calculada.<br>" +
-            "<b><i>&#956;</i> y <i>&#963;</i>:</b> Son la media y la desviación estándar obtenidas de las muestras de referencia para cada genotipo.</html>",
+                "<html><b>5. Likelihood Calculation</b><br>" +
+                        "For each value obtained above, the likelihood of the three possible genotypes " +
+                        "(both homozygotes and heterozygote) is calculated using the following formula:<br><br>" +
+                        "&nbsp;&nbsp;&nbsp;<font color='#1a5fb4' size='6'><i>L(x | &#956;, &#963;) = [ 1 / (&#963;&radic;2&#960;) ] &sdot; e<sup>-&frac12; [ (x - &#956;) / &#963; ]&sup2;</sup></i></font><br><br>" +
+                        "This uses the Mean (&#956;) and SD (&#963;) values obtained from reference samples.<br>" +
+                        "<b><i>x</i>:</b> Is the calculated logarithmic ratio value.<br>" +
+                        "<b><i>&#956;</i> and <i>&#963;</i>:</b> Are the mean and standard deviation obtained from the reference samples for each genotype.</html>",
 
-            "<html><b>6. Asignación de Genotipo</b><br>" +
-            "Finalmente, los tres valores de verosimilitud son ajustados a 100% total y el valor más alto " +
-            "es el genotipo asignado con su correspondiente valor de confianza.</html>"
+                "<html><b>6. Genotype Assignment</b><br>" +
+                        "Finally, the three likelihood values are adjusted to 100% total, and the highest value " +
+                        "corresponds to the assigned genotype with its confidence value.</html>"
         };
 
         for (String contenido : secciones) {
