@@ -61,7 +61,7 @@ public class Ventana_ayuda extends JFrame {
         pestañas.addTab("Visual Guide 2", crearPanelImagen("ayuda2_eng.jpg"));
 
         // 4. Pestaña de imagen ayuda 3
-        pestañas.addTab("Two Probes", crearPanelImagen("ayuda3.jpg"));
+        //pestañas.addTab("Two Probes", crearPanelImagen("ayuda3.jpg"));
 
         // 4. Pestaña de imagen ayuda 4
         pestañas.addTab("Four Probes", crearPanelImagen("ayuda4_eng.jpg"));

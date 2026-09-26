@@ -71,7 +71,7 @@ public class Metodos {
 	    fileChooser.setDialogTitle(titulo);
 
 	    // Filtrar solo archivos .csv
-	    FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos CSV (*.csv)", "csv");
+	    FileNameExtensionFilter filtro = new FileNameExtensionFilter("CSV files (*.csv)", "csv");
 	    fileChooser.setFileFilter(filtro);
 
 	    fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -95,9 +95,9 @@ public class Metodos {
 
 	        if (!nombreLower.contains(letrasLower)) {
 	            JOptionPane.showMessageDialog(parent,
-	                "El archivo debe contener '" + letras + "' en su nombre.\n\n" +
-	                "Archivo seleccionado: " + file.getName(),
-	                "Archivo no válido",
+	                "The file must contain '" + letras + "' in its name.\n\n" +
+	                "Selected file: " + file.getName(),
+	                "Invalid file",
 	                JOptionPane.WARNING_MESSAGE);
 	            return null;
 	        }
@@ -107,13 +107,13 @@ public class Metodos {
 	            return file;
 	        } else {
 	            JOptionPane.showMessageDialog(parent,
-	                "Por favor seleccione un archivo con extensión .csv",
+	                "Please select a file with the .csv extension.",
 	                "Error",
 	                JOptionPane.ERROR_MESSAGE);
 	            return null;
 	        }
 	    } else {
-	        System.out.println("El usuario canceló la selección");
+	        System.out.println("The user cancelled the selection.");
 	        return null;
 	    }
 	}
@@ -126,10 +126,10 @@ public class Metodos {
 	    props.setProperty(LAST_DIRECTORY_KEY, directory.getAbsolutePath());
 
 	    try (FileOutputStream fos = new FileOutputStream(CONFIG_FILE)) {
-	        props.store(fos, "Última carpeta usada por el FileChooser");
+	        props.store(fos, "Last folder used by the FileChooser");
 	        //System.out.println("Carpeta guardada: " + directory.getAbsolutePath());
 	    } catch (IOException e) {
-	        System.err.println("No se pudo guardar la última carpeta: " + e.getMessage());
+	        System.err.println("The last folder could not be saved: " + e.getMessage());
 	    }
 	}
 
@@ -148,7 +148,7 @@ public class Metodos {
 	            return new File(path);
 	        }
 	    } catch (IOException e) {
-	        System.err.println("No se pudo leer la última carpeta: " + e.getMessage());
+	        System.err.println("The last folder could not be saved: " + e.getMessage());
 	    }
 	    return null;
 	}
@@ -198,7 +198,7 @@ public class Metodos {
 
 	        } catch (IOException e) {
 	            JOptionPane.showMessageDialog(parent, 
-	                "Error al leer el archivo:\n" + e.getMessage(), 
+	                "Error reading the file:\n" + e.getMessage(),
 	                "Error", JOptionPane.ERROR_MESSAGE);
 	            e.printStackTrace();
 	        }
@@ -219,8 +219,8 @@ public class Metodos {
 
 		if (!todosDiferentes) {
 			JOptionPane.showMessageDialog(null,
-					"Error: Se han detectado sondas duplicadas. Cada canal debe tener una sonda distinta (FAM, HEX, etc.)",
-					"Configuración Incorrecta",
+					"Error: Duplicate probes detected. Each channel must have a distinct probe (FAM, HEX, etc.).",
+					"Incorrect Configuration",
 					JOptionPane.ERROR_MESSAGE);
 			return; // Detiene la ejecución del cálculo
 		}
@@ -278,8 +278,8 @@ public class Metodos {
 		if(datos1.get(0).size() < primerCiclo || datos1.get(0).size() < segundoCiclo ) {
 
 			JOptionPane.showMessageDialog(v,
-					"Los números ce ciclos utilizados para calcular el promedio basal, no pueden ser mayores a la cantidad total de ciclos."+
-							"\nVer pestaña de configuración",
+					"The number of cycles used to calculate the baseline average cannot exceed the total number of cycles."+
+							"\nSee the settings tab",
 					"Error",
 					JOptionPane.ERROR_MESSAGE);
 
@@ -295,7 +295,7 @@ public class Metodos {
 		else if (segundoIndice<primerIndice) {
 
 			JOptionPane.showMessageDialog(v,
-					"El primer ciclo no puede ser mayor al segundo ciclo \nVer pestaña de configuración",
+					"The first cycle cannot be longer than the second cycle. \nSee the settings tab",
 					"Error",
 					JOptionPane.ERROR_MESSAGE);
 
@@ -304,7 +304,7 @@ public class Metodos {
 		else if(datos1.size() != datos2.size()) {
 
 			JOptionPane.showMessageDialog(v,
-					"Las listas suministradas no tienen la misma longitud. \nPor favor revisar su origen. ",
+					"The provided lists do not have the same length. \nPlease check its origin. ",
 					"Error",
 					JOptionPane.ERROR_MESSAGE);
 		}
@@ -534,8 +534,8 @@ public class Metodos {
 
 		 if (!todosDiferentes) {
 			 JOptionPane.showMessageDialog(null,
-					 "Error: Se han detectado sondas duplicadas. Cada canal debe tener una sonda distinta (FAM, HEX, etc.)",
-					 "Configuración Incorrecta",
+					 "Error: Duplicate probes detected. Each channel must have a distinct probe (FAM, HEX, etc.).",
+					 "Incorrect Configuration",
 					 JOptionPane.ERROR_MESSAGE);
 			 return; // Detiene la ejecución del cálculo
 		 }
@@ -593,8 +593,8 @@ public class Metodos {
         if(datos1.get(0).size() < primerCiclo || datos1.get(0).size() < segundoCiclo ) {
 			 
 			 JOptionPane.showMessageDialog(v,
-		                "Los números ce ciclos utilizados para calcular el promedio basal, no pueden ser mayores a la cantidad total de ciclos."+
-		                		"\nVer pestaña de configuración",
+		                "The number of cycles used to calculate the baseline average cannot exceed the total number of cycles."+
+		                		"\nSee the settings tab",
 		                "Error",
 		                JOptionPane.ERROR_MESSAGE);
 			 
@@ -610,7 +610,7 @@ public class Metodos {
          else if (segundoIndice<primerIndice) {
 			 
 			 JOptionPane.showMessageDialog(v,
-		                "El primer ciclo no puede ser mayor al segundo ciclo \nVer pestaña de configuración",
+		                "The first cycle cannot be longer than the second cycle. \nSee the settings tab",
 		                "Error",
 		                JOptionPane.ERROR_MESSAGE);
 			 
@@ -619,7 +619,7 @@ public class Metodos {
 		 else if(datos1.size() != datos2.size() || datos1.size() != datos3.size() || datos1.size() != datos4.size()) {
 			 
 			 JOptionPane.showMessageDialog(v,
-		                "Las listas suministradas no tienen la misma longitud. \nPor favor revisar su origen. ",
+		                "The provided lists do not have the same length. \nPlease check its origin. ",
 		                "Error",
 		                JOptionPane.ERROR_MESSAGE);
 		 }
@@ -732,7 +732,7 @@ public class Metodos {
 					  								.mapToDouble(Double::doubleValue)
 					  								.average()
 					  								.orElse(0.0);
-			   System.out.println(i+") Promedio superior Cy5: "+ promedioSuperior);
+			   System.out.println(i+") lower average Cy5: "+ promedioSuperior);
 			   delta = promedioSuperior-promedioInferior4;//calcular la diferencia entre los promedios
 			   System.out.println(i+ ") Delta Cy5: "+ delta);
 			   
@@ -1344,7 +1344,7 @@ public class Metodos {
 	 public double calcularDensidadGaussiana(double resultado, double media, double sd) {
 	     
 	     if (sd <= 0) {
-	         throw new IllegalArgumentException("La desviación estándar (sd) debe ser mayor que 0");
+	         throw new IllegalArgumentException("The standard deviation (sd) must be greater than 0");
 	     }
 
 	     double z = (resultado - media) / sd;                    // z-score
@@ -1375,21 +1375,21 @@ public class Metodos {
 		 if (jComboBox.getSelectedIndex() == 0){
 		 // 1. Validación inicial
 		    if (datos1 == null || datos1.size() != 117 || datos3.size() != 117) {
-		        JOptionPane.showMessageDialog(null, "Error: Las listas deben tener exactamente 117 elementos.", "Error", JOptionPane.ERROR_MESSAGE);
+		        JOptionPane.showMessageDialog(null, "Error: The lists must have exactly 117 elements.", "Error", JOptionPane.ERROR_MESSAGE);
 		        return;
 		    }}
 
 		 else if (jComboBox.getSelectedIndex() == 1){
 			 // 1. Validación inicial
 			 if (datos1 == null || datos1.size() != 117 || datos2 == null || datos2.size() != 117 || datos3.size() != 117) {
-				 JOptionPane.showMessageDialog(null, "Error: Las listas deben tener exactamente 117 elementos.", "Error", JOptionPane.ERROR_MESSAGE);
+				 JOptionPane.showMessageDialog(null, "Error: The lists must have exactly 117 elements.", "Error", JOptionPane.ERROR_MESSAGE);
 				 return;
 			 }}
 
 		    // 2. Elegir carpeta
 		    JFileChooser chooser = new JFileChooser();
 		    chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-		    chooser.setDialogTitle("Seleccione la carpeta donde guardar los archivos");
+		    chooser.setDialogTitle("Select the folder where the files will be saved.");
 
 		    int result = chooser.showSaveDialog(null);
 		    if (result != JFileChooser.APPROVE_OPTION) {
@@ -1408,12 +1408,12 @@ public class Metodos {
 				escribirCsv(new File(carpetaDestino, nombre3 + timestamp + ".csv"), datos3);
 
 		        // Mensaje de éxito
-		        JOptionPane.showMessageDialog(null, "Los archivos se guardaron correctamente en:\n" + carpetaDestino.getAbsolutePath(), 
+		        JOptionPane.showMessageDialog(null, "The files were saved successfully in:\n" + carpetaDestino.getAbsolutePath(),
 		                                      "Éxito", JOptionPane.INFORMATION_MESSAGE);
 
 		    } catch (IOException e) {
 		        // Mensaje de error
-		        JOptionPane.showMessageDialog(null, "Ocurrió un error al guardar los archivos: " + e.getMessage(), 
+		        JOptionPane.showMessageDialog(null, "An error occurred while saving the files: " + e.getMessage(),
 		                                      "Error", JOptionPane.ERROR_MESSAGE);
 		        e.printStackTrace();
 		    }

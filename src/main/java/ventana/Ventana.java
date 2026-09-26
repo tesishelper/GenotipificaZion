@@ -1458,7 +1458,7 @@ public class Ventana extends JFrame {
         // --- Nuevos elementos a restaurar ---
 
         // 1. Restaurar Nombre del Proyecto (con formato de Hint)
-        jtf_nombre.setText("Escriba el nombre aquí...");
+        jtf_nombre.setText("Enter the name here...");
         jtf_nombre.setForeground(Color.GRAY);
         jtf_nombre.setFont(new Font("Arial", Font.ITALIC, 14));
 
