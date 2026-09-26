@@ -1,6 +1,9 @@
-GenotipificaZion
+GenotipificaZionDQB1
 
-GenotipificaZion es una herramienta desarrollada en Java diseñada para la automatización del análisis de genotipificación de diversos marcadores moleculares mediante PCR de tiempo real con sondas de hidrólisis alelo-específicas. Aunque inicialmente fue concebida para el locus DQB1, su arquitectura actual permite procesar una amplia gama de variantes genéticas utilizando modelos de máxima verosimilitud.
+Este programa es una versión modificada del programa GenotipificaZion, concebida para el análisis del locus DQB1.
+
+
+GenotipificaZion es una herramienta desarrollada en Java diseñada para la automatización del análisis de genotipificación de diversos marcadores moleculares mediante PCR de tiempo real con sondas de hidrólisis alelo-específicas, con una arquitectura que permite procesar una amplia gama de variantes genéticas utilizando modelos de máxima verosimilitud.
 
 Características Principales
 
