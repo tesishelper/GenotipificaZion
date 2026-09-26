@@ -1,65 +1,55 @@
 GenotipificaZionDQB1
 
-Este programa es una versión modificada del programa GenotipificaZion, concebida para el análisis del locus DQB1.
+This program is a modified version of the GenotipificaZion software, designed specifically for the analysis of the DQB1 locus.
 
+GenotipificaZion is a Java-based tool designed to automate the genotyping analysis of various molecular markers using real-time PCR with allele-specific hydrolysis probes. Its architecture allows for processing a wide range of genetic variants using maximum likelihood models.
 
-GenotipificaZion es una herramienta desarrollada en Java diseñada para la automatización del análisis de genotipificación de diversos marcadores moleculares mediante PCR de tiempo real con sondas de hidrólisis alelo-específicas, con una arquitectura que permite procesar una amplia gama de variantes genéticas utilizando modelos de máxima verosimilitud.
+Key Features
 
-Características Principales
+a) Universality: Ability to analyze different molecular markers, not limited solely to DQB1 alleles.
 
-a) Universalidad: Capacidad de analizar diferentes marcadores moleculares, no limitándose únicamente a alelos DQB1.
+b) Configuration Flexibility: Supports analysis using two probes or expanded configurations of up to four labeled probes (e.g., FAM, HEX, TexasRED, Cy5).
 
-b) Flexibilidad de Configuración: Soporta análisis utilizando dos sondas o configuraciones ampliadas de hasta cuatro sondas marcadas (ej. FAM, HEX, TexasRED, Cy5).
+c) Batch Processing: Automatically loads and analyzes CSV files exported directly from the thermal cycler.
 
-c) Procesamiento por Lotes: Carga y analiza automáticamente archivos CSV exportados directamente desde el termociclador.
+d) High Precision: Employs statistical calculations based on reference data to ensure reliable genotype assignments.
 
-d) Alta Precisión: Emplea cálculos estadísticos basados en datos de referencia para garantizar asignaciones de genotipos confiables.
+Analysis Methodology
 
-Metodología de Análisis
+The program implements a rigorous logical workflow based on raw fluorescence processing:
 
-El programa implementa un flujo de trabajo lógico riguroso basado en el procesamiento de fluorescencia cruda:
+1. Calculation of Net Fluorescence (EndRFU): For each well (PCR reaction) and color channel, the final fluorescence is calculated by subtracting the baseline average (cycles 10 to 20) from the final signal average (cycles 40 to 45).
 
-1. Cálculo de la fluorescencia neta (EndRFU): Para cada pocillo (reacción de PCR) y canal de color, se calcula la fluorescencia final restando el promedio de la línea base (ciclos 10 a 20) al promedio de la señal final (ciclos 40 a 45).
+2. Negative Value Normalization: EndRFU values under 1 are automatically set to 1 to prevent errors in subsequent logarithmic calculations.
 
-2. Normalización de Valores negativos: Los valores de EndRFU menores a 1 se fijan automáticamente en 1 para evitar errores en cálculos logarítmicos posteriores.
+3. Quality Control: Samples with insufficient amplification or weak signal (sum of EndRFU < 150) are automatically filtered out and classified as "ND" (Not Determined).
 
-3. Control de Calidad: Se filtran automáticamente las muestras con amplificación insuficiente o señal débil (suma de EndRFU \< 150), clasificándolas como "ND" (No Determinado).
+   If EndRFU_A + EndRFU_B < 150 ⟹ Result = "ND"
 
-```
-     Si EndRFU\_A + EndRFU\_B \< 150 ⟹ Resultado = "ND"
-```
+4. Calculation of Base 2 Logarithm (Log 2) of the Allelic Ratio: The relationship between probe signals recognizing different alleles is determined using the formula:
 
-4. Cálculo de logaritmo en base 2 (Log 2) de la relación alélica: Se determina la relación entre las señales de las sondas que reconocen diferentes alelos mediante la fórmula
+   Ratio = log₂ ( EndRFU_Probe_A / EndRFU_Probe_B )
 
-```
-     Relación = log₂ ( EndRFU\_Sonda\_A / EndRFU\_Sonda\_B )
-```
+5. Maximum Likelihood Assignment: The software uses a normal distribution function with reference Mean and Standard Deviation (SD) values to calculate the likelihood of possible genotypes (homozygous and heterozygous).
 
-5. Asignación por Máxima Verosimilitud: El software utiliza una función de distribución normal con valores de Media y Desviación Estándar (SD) de referencia para calcular la verosimilitud de los genotipos posibles (homocigotos y heterocigotos).
+   L(x│μ,σ) = [ 1 / (σ·√2π) ] · e^[-½((x-μ)/σ)²]
 
-```
-     L(x│μ,σ) = \[ 1 / (σ·√2π) \] · e^\[-½((x-μ)/σ)²\]
-```
+   This uses the Mean (μ) and SD (σ) values obtained from reference samples.  
+   x: The calculated logarithmic ratio value.  
+   μ and σ: The mean and standard deviation obtained from reference samples for each genotype. Likelihood values are normalized to 100%, assigning the genotype with the highest confidence value.
 
-Esta emplea los valores de Media (μ) y SD (σ) obtenidos en muestras de referencia.  
-x: Es el valor de la relación logarítmica calculada.  
-μ y σ: Son la media y la desviación estándar obtenidas de las muestras de referencia para cada genotipo. Los valores de verosimilitud se normalizan al 100%, asignando el genotipo con mayor valor de confianza.
+6. Phenotype Assignment: Finally, the three likelihood values are adjusted to a 100% total, and the highest value is assigned as the genotype along with its corresponding confidence level.
 
-1. Asignación de fenotipos: Finalmente, los tres valores de verosimilitud son ajustados a 100% total y el valor más alto es el genotipo asignado con su correspondiente valor de confianza.
+Input Data Requirements
 
-Requisitos de los Datos de Entrada
+For GenotipificaZion to process data correctly, thermal cycler files must be exported with the following parameters:
 
-Para que GenotipificaZion procese los datos correctamente, los archivos del termociclador deben exportarse con los siguientes parámetros:
+  > Baseline subtraction: Disabled.  
+  > Format: CSV (semicolon delimited).  
+  > Required files: One amplification result file per channel used (e.g., Quantification Amplification Results_FAM.csv).  
 
-```
-  \>Sustracción de línea base: Desactivada.   
-  \>Formato: CSV (delimitado por punto y coma).   
-  \>Archivos requeridos: Un archivo de resultados de amplificación por cada canal utilizado (ej. Quantification Amplification Results\_FAM.csv). 
-```
+Technical Validation
 
-Validación Técnica
+The robustness of this algorithm was originally validated with 55 direct saliva samples for the DQB1 marker (https://doi.org/10.64898/2026.05.19.26353109), demonstrating: 100% concordance with purified DNA methods and manual analysis. Confidence levels exceeding 95% in all assignments, with 94.5% of samples reaching 100% confidence.
 
-La robustez de este algoritmo fue validada originalmente con 55 muestras de saliva directa para el marcador DQB1 ([https://doi.org/10.64898/2026.05.19.26353109](https://doi.org/10.64898/2026.05.19.26353109)), demostrando: Una concordancia del 100% con métodos de ADN purificado y análisis manual. Niveles de confianza superiores al 95% en todas las asignaciones, con un 94.5% de las muestras alcanzando el 100% de confianza.
-
-Nota: Este programa es una herramienta de análisis automatizado para laboratorios de biología molecular que buscan estandarizar y acelerar la interpretación de datos de genotipificación.
-
+Note: This software is an automated analysis tool for molecular biology laboratories seeking to standardize and accelerate the interpretation of genotyping data.
